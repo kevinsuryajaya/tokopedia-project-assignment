@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { getData } from '../../services/pokemon-data/pokemon-data';
+import { useQuery } from '@apollo/client';
+import { GET_POKEMON } from '../../services/global-gql/global-gql';
+import get from 'lodash/get';
 import '../../css/pokemon-detail.css';
 
 export default function PokemonDetail(props) {
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
   const [toggle, setToggle] = React.useState(false);
   const [check, setCheck] = React.useState(false);
   const [key, setKey] = React.useState('');
@@ -13,16 +13,15 @@ export default function PokemonDetail(props) {
     pokemon: '',
     image_url: '',
   });
+  const gqlVariables = {
+    name: props.match.params.id,
+  };
 
-  React.useEffect(() => {
-    async function fetchData() {
-      const sourceUrl = `https://pokeapi.co/api/v2/pokemon/${props.match.params.id}`;
-      let response = await getData(sourceUrl);
-      setData(response);
-      setLoading(false);
-    }
-    fetchData();
-  }, [props]);
+  const { loading, error, data } = useQuery(GET_POKEMON, {
+    variables: gqlVariables,
+  });
+
+  const pokemonData = get(data, 'pokemon', {});
 
   const catchClick = () => {
     const min = 1;
@@ -39,9 +38,9 @@ export default function PokemonDetail(props) {
     setKey(event.target.value);
     setStore({
       ...store,
-      pokemon: data.name,
+      pokemon: pokemonData.name,
       nickname: event.target.value,
-      image_url: data.sprites.front_default,
+      image_url: pokemonData.sprites.front_default,
     });
   };
 
@@ -67,93 +66,97 @@ export default function PokemonDetail(props) {
               The information about pokemon type, ability, and move
             </span>
           </div>
-          <div className='detail__body'>
-            <div className='detail__contentSection detail__contentSection--margin'>
-              <div>
-                <img
-                  className='detail__image'
-                  src={data.sprites.front_default}
-                  alt='pokemon'
-                />
-              </div>
-              <div>
-                <button className='detail__button' onClick={catchClick}>
-                  Catch With Your Poke Ball!
-                </button>
-              </div>
-            </div>
-            <div id={toggle === true ? 'open' : ''} className='modal'>
-              <form onSubmit={handleSubmit}>
-                <div className='modal__content'>
-                  <div className='modal__header'>
-                    <h2>You Catch a Pokemon!</h2>
-                  </div>
-                  <div className='modal__body'>
-                    <p>Give a Pokemon Nickname:</p>
-                    <input
-                      type='text'
-                      id=''
-                      name='nickname'
-                      value={key}
-                      onChange={handleChange}
-                      required
+          {error ? (<p>{error.message}</p>) : (
+            <>
+              <div className='detail__body'>
+                <div className='detail__contentSection detail__contentSection--margin'>
+                  <div>
+                    <img
+                      className='detail__image'
+                      src={pokemonData.sprites.front_default}
+                      alt='pokemon'
                     />
                   </div>
-                  {check ? (
-                    <p className='modal__check'>Nickname already exist</p>
-                  ) : (
-                    ''
-                  )}
-                  <div className='modal__footer'>
-                    <button type='submit'>Submit</button>
+                  <div>
+                    <button className='detail__button' onClick={catchClick}>
+                      Catch With Your Poke Ball!
+                    </button>
                   </div>
                 </div>
-              </form>
-            </div>
-            <div className='detail__contentSection'>
-              <div className='detail__content'>
-                <h4 className='detail__contentTitle'>Name</h4>
-                <span className='detail__name'>{data.name}</span>
+                <div id={toggle === true ? 'open' : ''} className='modal'>
+                  <form onSubmit={handleSubmit}>
+                    <div className='modal__content'>
+                      <div className='modal__header'>
+                        <h2>You Catch a Pokemon!</h2>
+                      </div>
+                      <div className='modal__body'>
+                        <p>Give a Pokemon Nickname:</p>
+                        <input
+                          type='text'
+                          id=''
+                          name='nickname'
+                          value={key}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      {check ? (
+                        <p className='modal__check'>Nickname already exist</p>
+                      ) : (
+                        ''
+                      )}
+                      <div className='modal__footer'>
+                        <button type='submit'>Submit</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div className='detail__contentSection'>
+                  <div className='detail__content'>
+                    <h4 className='detail__contentTitle'>Name</h4>
+                    <span className='detail__name'>{pokemonData.name}</span>
+                  </div>
+                  <div className='detail__content'>
+                    <h4 className='detail__contentTitle'>Type</h4>{' '}
+                    {pokemonData.types.map((type, key) => {
+                      return (
+                        <span className='detail__desc detail__desc--type' key={key}>
+                          {type.type.name}
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <div className='detail__content'>
+                    <h4 className='detail__contentTitle'>Ability</h4>{' '}
+                    {pokemonData.abilities.map((ability, key) => {
+                      return (
+                        <span
+                          className='detail__desc detail__desc--ability'
+                          key={key}
+                        >
+                          {ability.ability.name}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
-              <div className='detail__content'>
-                <h4 className='detail__contentTitle'>Type</h4>{' '}
-                {data.types.map((type, key) => {
-                  return (
-                    <span className='detail__desc detail__desc--type' key={key}>
-                      {type.type.name}
-                    </span>
-                  );
-                })}
+              <div className='detail__content detail__content--center'>
+                <h3 className='detail__contentTitle detail__contentTitle--center'>
+                  Pokemon Move List
+                </h3>
+                <div className='detail__row'>
+                  {pokemonData.moves.map((move, key) => {
+                    return (
+                      <span className='detail__desc detail__desc--move' key={key}>
+                        {move.move.name}
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
-              <div className='detail__content'>
-                <h4 className='detail__contentTitle'>Ability</h4>{' '}
-                {data.abilities.map((ability, key) => {
-                  return (
-                    <span
-                      className='detail__desc detail__desc--ability'
-                      key={key}
-                    >
-                      {ability.ability.name}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div className='detail__content detail__content--center'>
-            <h3 className='detail__contentTitle detail__contentTitle--center'>
-              Pokemon Move List
-            </h3>
-            <div className='detail__row'>
-              {data.moves.map((move, key) => {
-                return (
-                  <span className='detail__desc detail__desc--move' key={key}>
-                    {move.move.name}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
+            </>
+          )}
         </div>
       )}
     </React.Fragment>

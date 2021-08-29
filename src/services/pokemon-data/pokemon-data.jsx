@@ -1,3 +1,4 @@
+
 export async function getAllData(url) {
   return new Promise((resolve, reject) => {
     fetch(url)

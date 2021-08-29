@@ -26,7 +26,7 @@ export default function CustomCard({ pokemon }) {
   return (
     <React.Fragment>
       <div className='card'>
-        <CustomLink to={{ pathname: `/pokemon-detail/` + pokemon.id }}>
+        <CustomLink to={{ pathname: `/pokemon-detail/` + pokemon.name }}>
           <div className='card__section'>
             <img
               className='card__image'
@@ -35,7 +35,7 @@ export default function CustomCard({ pokemon }) {
             />
             <div className='card__content'>
               <div className='card__header'>{pokemon.name}</div>
-              <div className='card__body'>
+              {/* <div className='card__body'>
                 {pokemon.types.map((type, key) => {
                   return (
                     <span className='card__type' key={key}>
@@ -43,7 +43,7 @@ export default function CustomCard({ pokemon }) {
                     </span>
                   );
                 })}
-              </div>
+              </div> */}
               <span>Owned: {filterCount().length}</span>
             </div>
           </div>

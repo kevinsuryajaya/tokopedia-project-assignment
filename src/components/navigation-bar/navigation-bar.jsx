@@ -35,7 +35,7 @@ export default function NavigationBar() {
           </button>
           <div className='nav-collapse'>
             <span className='navbar-link'>
-              <Link to='/my-pokemon'>
+              <Link to='/'>
                 <div onClick={() => setToggle(false)}>
                   <i className='fa fa-home' aria-hidden='true'></i>
                   <span>Pokemon List</span>
