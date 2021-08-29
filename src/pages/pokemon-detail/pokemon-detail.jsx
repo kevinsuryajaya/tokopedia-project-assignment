@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getData } from "../../services/pokemon-data";
+import { getData } from "../../services/pokemon-data/pokemon-data";
 import "../../css/pokemon-detail.css";
 
 export default function PokemonDetail(props) {

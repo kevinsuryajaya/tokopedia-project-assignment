@@ -1,6 +1,6 @@
 import * as React from "react";
-import { getAllData, getData } from "../../services/pokemon-data";
-import CustomCard from "../../components/custom-card";
+import { getAllData, getData } from "../../services/pokemon-data/pokemon-data";
+import CustomCard from "../../components/custom-card/custom-card";
 import "../../css/pokemon-list.css";
 
 export default function PokemonList() {

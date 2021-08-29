@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "@emotion/styled";
 import "./App.css";
 
-import NavigationBar from "./components/navigation-bar";
-import MobileNavigation from "./components/mobile-navigation";
-import PokemonList from "./pages/pokemon-list";
-import MyPokemon from "./pages/my-pokemon";
-import PokemonDetail from "./pages/pokemon-detail";
+import NavigationBar from "./components/navigation-bar/navigation-bar";
+import MobileNavigation from "./components/mobile-navigation/mobile-navigation";
+import PokemonList from "./pages/pokemon-list/pokemon-list";
+import MyPokemon from "./pages/my-pokemon/my-pokemon";
+import PokemonDetail from "./pages/pokemon-detail/pokemon-detail";
 
 const CustomContainer = styled.div`
   padding-top: 5rem;

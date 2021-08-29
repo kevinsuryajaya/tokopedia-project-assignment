@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { allStorage } from "../../services/pokemon-localStorage";
+import { allStorage } from "../../services/pokemon-localStorage/pokemon-localStorage";
 import test from "../../assets/images/profile.jpg";
 import "../../css/my-pokemon.css";
 
