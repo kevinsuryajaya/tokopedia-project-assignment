@@ -1,13 +1,13 @@
-import * as React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import styled from "@emotion/styled";
-import "./App.css";
+import * as React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import styled from '@emotion/styled';
+import './App.css';
 
-import NavigationBar from "./components/navigation-bar/navigation-bar";
-import MobileNavigation from "./components/mobile-navigation/mobile-navigation";
-import PokemonList from "./pages/pokemon-list/pokemon-list";
-import MyPokemon from "./pages/my-pokemon/my-pokemon";
-import PokemonDetail from "./pages/pokemon-detail/pokemon-detail";
+import NavigationBar from './components/navigation-bar/navigation-bar';
+import MobileNavigation from './components/mobile-navigation/mobile-navigation';
+import PokemonList from './pages/pokemon-list/pokemon-list';
+import MyPokemon from './pages/my-pokemon/my-pokemon';
+import PokemonDetail from './pages/pokemon-detail/pokemon-detail';
 
 const CustomContainer = styled.div`
   padding-top: 5rem;
@@ -24,9 +24,9 @@ export default function App() {
       <NavigationBar />
       <CustomContainer>
         <Switch>
-          <Route path="/pokemon-detail/:id" component={PokemonDetail} />
-          <Route path="/my-pokemon" component={MyPokemon} />
-          <Route exact path="/" component={PokemonList} />
+          <Route path='/pokemon-detail/:id' component={PokemonDetail} />
+          <Route path='/my-pokemon' component={MyPokemon} />
+          <Route exact path='/' component={PokemonList} />
         </Switch>
       </CustomContainer>
       <MobileNavigation />

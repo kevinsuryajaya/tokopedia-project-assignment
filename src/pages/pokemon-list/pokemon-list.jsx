@@ -1,7 +1,7 @@
-import * as React from "react";
-import { getAllData, getData } from "../../services/pokemon-data/pokemon-data";
-import CustomCard from "../../components/custom-card/custom-card";
-import "../../css/pokemon-list.css";
+import * as React from 'react';
+import { getAllData, getData } from '../../services/pokemon-data/pokemon-data';
+import CustomCard from '../../components/custom-card/custom-card';
+import '../../css/pokemon-list.css';
 
 export default function PokemonList() {
   const [pokemonData, setPokemonData] = React.useState([]);
@@ -39,14 +39,14 @@ export default function PokemonList() {
       {loading ? (
         <h1>Loading..</h1>
       ) : (
-        <div className="home">
-          <h2 className="home__title">Pokemon List</h2>
-          <div className="home__section">
+        <div className='home'>
+          <h2 className='home__title'>Pokemon List</h2>
+          <div className='home__section'>
             {pokemonData.map((pokemon, key) => {
               return <CustomCard key={key} pokemon={pokemon} />;
             })}
           </div>
-          <button className="home__button" onClick={handleClick}>
+          <button className='home__button' onClick={handleClick}>
             Load More
           </button>
         </div>

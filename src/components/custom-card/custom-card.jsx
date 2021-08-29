@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
-import { allStorage } from "../../services/pokemon-localStorage/pokemon-localStorage";
-import "../../css/custom-card.css";
+import * as React from 'react';
+import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+import { allStorage } from '../../services/pokemon-localStorage/pokemon-localStorage';
+import '../../css/custom-card.css';
 
 const CustomLink = styled(Link)`
   &:focus,
@@ -25,20 +25,20 @@ export default function CustomCard({ pokemon }) {
 
   return (
     <React.Fragment>
-      <div className="card">
+      <div className='card'>
         <CustomLink to={{ pathname: `/pokemon-detail/` + pokemon.id }}>
-          <div className="card__section">
+          <div className='card__section'>
             <img
-              className="card__image"
+              className='card__image'
               src={pokemon.sprites.front_default}
-              alt="pokemon"
+              alt='pokemon'
             />
-            <div className="card__content">
-              <div className="card__header">{pokemon.name}</div>
-              <div className="card__body">
+            <div className='card__content'>
+              <div className='card__header'>{pokemon.name}</div>
+              <div className='card__body'>
                 {pokemon.types.map((type, key) => {
                   return (
-                    <span className="card__type" key={key}>
+                    <span className='card__type' key={key}>
                       {type.type.name}
                     </span>
                   );
