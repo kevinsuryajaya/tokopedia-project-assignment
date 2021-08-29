@@ -1,56 +1,57 @@
 import * as React from 'react';
-import { getAllData, getData } from '../../services/pokemon-data/pokemon-data';
+import { GET_ALL_POKEMONS } from '../../services/global-gql/global-gql';
+import { useQuery } from '@apollo/client';
+import get from 'lodash/get';
 import CustomCard from '../../components/custom-card/custom-card';
 import '../../css/pokemon-list.css';
 
+
 export default function PokemonList() {
-  const [pokemonData, setPokemonData] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [counter, setCounter] = React.useState(10);
-  const sourceUrl = `https://pokeapi.co/api/v2/pokemon?limit=${counter}`;
+  const [counter, setCounter] = React.useState(0);
 
-  React.useEffect(() => {
-    async function fetchData() {
-      let response = await getAllData(sourceUrl);
-      await loadingData(response.results);
-      setLoading(false);
-    }
-    fetchData();
-  }, []);
-
-  const handleClick = async () => {
-    let data = await getAllData(sourceUrl);
-    await loadingData(data.results);
+  const gqlVariables = {
+    limit: 10,
+    offset: counter,
   };
 
-  const loadingData = async (data) => {
-    let _pokemonData = await Promise.all(
-      data.map(async (pokemon) => {
-        let pokemonRecord = await getData(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_pokemonData);
+  const { loading, error, data } = useQuery(GET_ALL_POKEMONS, {
+    variables: gqlVariables
+  })
+
+  const pokemonsData = get(data, 'pokemons.results', []);
+
+  const handleClickNext = () => {
     setCounter(counter + 10);
+  };
+
+  const handleClickPrev = () => {
+    setCounter(counter - 10);
   };
 
   return (
     <React.Fragment>
-      {loading ? (
-        <h1>Loading..</h1>
-      ) : (
+      {loading ? (<h1>Loading..</h1>) : (
         <div className='home'>
           <h2 className='home__title'>Pokemon List</h2>
-          <div className='home__section'>
-            {pokemonData.map((pokemon, key) => {
-              return <CustomCard key={key} pokemon={pokemon} />;
-            })}
-          </div>
-          <button className='home__button' onClick={handleClick}>
-            Load More
+          {error ? (<h2>{error.message}</h2>) : (
+            <div className='home__section'>
+              {pokemonsData.map((pokemon, key) => {
+                return <CustomCard key={key} pokemon={pokemon} />;
+              })}
+            </div>
+          )}
+          {counter < 10 ? (null) : (
+            <button className='home__button' onClick={handleClickPrev}>
+              prev
+            </button>
+          )}
+          <button className='home__button' onClick={handleClickNext}>
+            next
           </button>
         </div>
       )}
+
+
     </React.Fragment>
   );
 }

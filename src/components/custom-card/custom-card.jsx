@@ -16,11 +16,11 @@ const CustomLink = styled(Link)`
 `;
 
 export default function CustomCard({ pokemon }) {
-  const temps = allStorage();
+  const counterFilter = allStorage();
 
   const filterCount = () =>
-    temps.filter((temp) =>
-      temp.pokemon.toLowerCase().includes(pokemon.name.toLowerCase())
+    counterFilter.filter((res) =>
+      res.pokemon.toLowerCase().includes(pokemon.name.toLowerCase())
     );
 
   return (
@@ -30,20 +30,11 @@ export default function CustomCard({ pokemon }) {
           <div className='card__section'>
             <img
               className='card__image'
-              src={pokemon.sprites.front_default}
+              src={pokemon.image}
               alt='pokemon'
             />
             <div className='card__content'>
               <div className='card__header'>{pokemon.name}</div>
-              {/* <div className='card__body'>
-                {pokemon.types.map((type, key) => {
-                  return (
-                    <span className='card__type' key={key}>
-                      {type.type.name}
-                    </span>
-                  );
-                })}
-              </div> */}
               <span>Owned: {filterCount().length}</span>
             </div>
           </div>

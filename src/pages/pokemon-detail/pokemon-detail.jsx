@@ -22,7 +22,6 @@ export default function PokemonDetail(props) {
   });
 
   const pokemonData = get(data, 'pokemon', {});
-
   const catchClick = () => {
     const min = 1;
     const max = 3;
