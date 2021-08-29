@@ -1,0 +1,162 @@
+nav {
+  margin: 0;
+  padding: 0;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  font-family: "Raleway", sans-serif;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 9;
+  background: #ffffff;
+  width: 100%;
+  height: 3.25rem;
+  transition: height 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.navigation {
+  margin: 0rem 0.5rem 0rem 0.5rem;
+}
+
+.nav-brand {
+  display: none;
+}
+
+.navbar-link {
+  color: #a0a0a0;
+  line-height: 3rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 1.5rem 0rem 0rem 0.5rem;
+}
+
+.navbar-link a {
+  text-decoration: none;
+  color: #a0a0a0;
+}
+
+.navbar-link i {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.toggler {
+  float: left;
+  width: 2rem;
+  height: 1rem;
+  margin: 1.25rem 0rem 1rem 0rem;
+  background: none;
+  border: none;
+  outline: none;
+  opacity: 0.8;
+  padding: 0rem 0.3rem 0.5rem 0.3rem;
+}
+.toggler span {
+  display: block;
+  width: 100%;
+  height: 0.2rem;
+  background: #a0a0a0;
+  border-radius: 10px;
+  position: relative;
+  transition: 0.25s ease-in-out;
+}
+.toggler span:nth-child(1) {
+  top: -0.4rem;
+}
+.toggler span:nth-child(2) {
+  top: 0;
+}
+.toggler span:nth-child(3) {
+  top: 0.3rem;
+}
+
+.navbar-link:hover,
+.toggler:hover,
+.navbar-link:focus,
+.toggler:focus {
+  opacity: 1;
+}
+
+nav.open .toggler span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+nav.open .toggler span:nth-child(2) {
+  transform: translateX(-100%);
+  width: 0;
+  opacity: 0;
+}
+nav.open .toggler span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+nav.open {
+  height: 100vh;
+}
+
+.input-search {
+  background-color: #eeeeee;
+  margin-left: 1rem;
+  border: 0px;
+  border-radius: 10px;
+  padding: 7px 7px 7px 25px;
+  width: 40%;
+  margin: 0.6rem 0rem 0rem 0.4rem;
+}
+
+.search-feature {
+  display: inline;
+}
+
+.icon {
+  position: absolute;
+  color: rgba(128, 128, 128, 0.452);
+  text-align: center;
+  margin: 15px 10px 10px 12px;
+}
+
+.icon-section {
+  display: inline-block;
+}
+
+.ui-icon {
+  color: #afafaf;
+  font-size: 20px;
+  margin-left: 1rem;
+}
+
+.avatar {
+  object-fit: cover;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.desktop-link {
+  display: none;
+}
+
+@media (min-width: 1300px) {
+  .input-search {
+    width: 60%;
+  }
+  .toggler {
+    display: none;
+  }
+  .nav-brand {
+    display: inline-block;
+    font-weight: 600;
+    color: rgb(3 172 14);
+    margin-right: 10px;
+  }
+
+  .desktop-link {
+    display: inline-block;
+    color: #a0a0a0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .desktop-link span {
+    margin-left: 5px;
+  }
+}

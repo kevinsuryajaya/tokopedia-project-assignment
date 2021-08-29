@@ -1,0 +1,38 @@
+.mobile {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.mobile__tab {
+  float: left;
+  width: 50%;
+}
+
+.mobile__navigation {
+  display: block;
+  color: #999999;
+  text-align: center;
+  padding: 5px 14px;
+  text-decoration: none;
+}
+
+.mobile__logo {
+  font-size: 20px;
+}
+.mobile__title {
+  margin: 0px;
+  font-size: 11px;
+}
+
+@media (min-width: 768px) {
+  .mobile {
+    display: none;
+  }
+}
