@@ -1,20 +1,20 @@
+import { GET_ALL_POKEMONS } from '../global-gql/global-gql';
 
-export async function getAllData(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data);
-      });
-  });
-}
+export async function getAllPokemon(limit) {
+  const gqlVariables = {
+    limit: limit,
+    offset: 0
+  };
+  let result = await fetch('https://graphql-pokeapi.graphcdn.app/', {
+    credentials: 'omit',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: GET_ALL_POKEMONS,
+      variables: gqlVariables,
+    }),
+    method: 'POST',
+  })
+  let pokeData = await result.json();
 
-export async function getData(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data);
-      });
-  });
+  return pokeData
 }
