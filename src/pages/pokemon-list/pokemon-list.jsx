@@ -17,7 +17,7 @@ export default function PokemonList() {
     })()
   }, [counter]);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     setCounter(counter + 10);
   };
 
