@@ -19,8 +19,6 @@ export default function PokemonList() {
 
   const handleClick = async () => {
     setCounter(counter + 10);
-    let res = await getAllPokemon(counter);
-    setPokemonData(res.data.pokemons.results);
   };
 
   return (
