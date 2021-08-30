@@ -105,11 +105,6 @@
   grid-column: span 4;
 }
 
-.detail__type:hover {
-  border-color: red;
-  color: red;
-}
-
 #open {
   display: block;
 }
@@ -117,7 +112,7 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 99; /* Sit on top */
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
@@ -129,9 +124,10 @@
 }
 
 .modal__check {
-  margin: 0px;
+  margin: 0px 0px 0px 15px;
   color: red;
   font-weight: 600;
+  
 }
 
 /* Modal Content */
@@ -147,6 +143,7 @@
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s;
+  border-radius: 10px 10px 8px 8px;
 }
 
 /* Add Animation */
@@ -191,16 +188,31 @@
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
+  border-radius: 8px 8px 0px 0px;
 }
 
 .modal__body {
   padding: 2px 16px;
 }
 
+.modal__input {
+  border-radius: 15px;
+  border: 1px solid;
+  padding: 10px;
+}
+
 .modal__footer {
   padding: 2px 16px;
+  color: white;
+}
+
+.modal__button{
+  border: 0px;
+  border-radius: 5px;
   background-color: #5cb85c;
   color: white;
+  padding: 10px 15px 10px 15px;
+  margin: 10px 0px 10px 0px;
 }
 
 @media (min-width: 1300px) {

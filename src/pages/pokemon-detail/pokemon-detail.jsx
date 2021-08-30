@@ -89,9 +89,10 @@ export default function PokemonDetail(props) {
                       <div className='modal__body'>
                         <p>Give a Pokemon Nickname:</p>
                         <input
+                          className='modal__input'
                           type='text'
-                          id=''
                           name='nickname'
+                          placeholder='Your Pokemon Nickname...'
                           value={key}
                           onChange={handleChange}
                           required
@@ -103,7 +104,7 @@ export default function PokemonDetail(props) {
                         ''
                       )}
                       <div className='modal__footer'>
-                        <button type='submit'>Submit</button>
+                        <button type='submit' className='modal__button'>Save</button>
                       </div>
                     </div>
                   </form>
