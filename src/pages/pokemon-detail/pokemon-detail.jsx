@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_POKEMON } from '../../services/global-gql/global-gql';
-import get from 'lodash/get';
 import '../../css/pokemon-detail.css';
 
 export default function PokemonDetail(props) {
@@ -17,11 +16,10 @@ export default function PokemonDetail(props) {
     name: props.match.params.id,
   };
 
-  const { loading, error, data } = useQuery(GET_POKEMON, {
+  const { loading, error, data: pokemonData} = useQuery(GET_POKEMON, {
     variables: gqlVariables,
   });
-
-  const pokemonData = get(data, 'pokemon', {});
+ 
   const catchClick = () => {
     const min = 1;
     const max = 3;
@@ -37,9 +35,9 @@ export default function PokemonDetail(props) {
     setKey(event.target.value);
     setStore({
       ...store,
-      pokemon: pokemonData.name,
+      pokemon: pokemonData.pokemon.name,
       nickname: event.target.value,
-      image_url: pokemonData.sprites.front_default,
+      image_url: pokemonData.pokemon.sprites.front_default,
     });
   };
 
@@ -72,7 +70,7 @@ export default function PokemonDetail(props) {
                   <div>
                     <img
                       className='detail__image'
-                      src={pokemonData.sprites.front_default}
+                      src={pokemonData.pokemon.sprites.front_default}
                       alt='pokemon'
                     />
                   </div>
@@ -113,11 +111,11 @@ export default function PokemonDetail(props) {
                 <div className='detail__contentSection'>
                   <div className='detail__content'>
                     <h4 className='detail__contentTitle'>Name</h4>
-                    <span className='detail__name'>{pokemonData.name}</span>
+                    <span className='detail__name'>{pokemonData.pokemon.name}</span>
                   </div>
                   <div className='detail__content'>
                     <h4 className='detail__contentTitle'>Type</h4>{' '}
-                    {pokemonData.types.map((type, key) => {
+                    {pokemonData.pokemon.types.map((type, key) => {
                       return (
                         <span className='detail__desc detail__desc--type' key={key}>
                           {type.type.name}
@@ -127,7 +125,7 @@ export default function PokemonDetail(props) {
                   </div>
                   <div className='detail__content'>
                     <h4 className='detail__contentTitle'>Ability</h4>{' '}
-                    {pokemonData.abilities.map((ability, key) => {
+                    {pokemonData.pokemon.abilities.map((ability, key) => {
                       return (
                         <span
                           className='detail__desc detail__desc--ability'
@@ -145,7 +143,7 @@ export default function PokemonDetail(props) {
                   Pokemon Move List
                 </h3>
                 <div className='detail__row'>
-                  {pokemonData.moves.map((move, key) => {
+                  {pokemonData.pokemon.moves.map((move, key) => {
                     return (
                       <span className='detail__desc detail__desc--move' key={key}>
                         {move.move.name}
