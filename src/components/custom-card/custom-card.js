@@ -28,11 +28,7 @@ export default function CustomCard({ pokemon }) {
       <div className='card'>
         <CustomLink to={{ pathname: `/pokemon-detail/` + pokemon.name }}>
           <div className='card__section'>
-            <img
-              className='card__image'
-              src={pokemon.image}
-              alt='pokemon'
-            />
+            <img className='card__image' src={pokemon.image} alt='pokemon' />
             <div className='card__content'>
               <div className='card__header'>{pokemon.name}</div>
               <span>Owned: {filterCount().length}</span>

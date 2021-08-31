@@ -47,12 +47,12 @@ export default function MyPokemon() {
                     className='user__pokemonImage'
                     src={myPokemon.image_url}
                     alt='pokemon'
-                    data-testid="pokemonImage"
+                    data-testid='pokemonImage'
                   />
                   <p className='user__pokemonNick'>{myPokemon.nickname}</p>
                   <button
                     className='user__button'
-                    data-testid="removeButton"
+                    data-testid='removeButton'
                     onClick={() => {
                       localStorage.removeItem(myPokemon.nickname);
                     }}

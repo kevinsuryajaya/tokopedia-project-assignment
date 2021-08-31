@@ -3,18 +3,17 @@ import { getAllPokemon } from '../../services/pokemon-data/pokemon-data';
 import CustomCard from '../../components/custom-card/custom-card';
 import '../../css/pokemon-list.css';
 
-
 export default function PokemonList() {
   const [pokemonData, setPokemonData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [counter, setCounter] = React.useState(10);
-  
+
   React.useEffect(() => {
     (async () => {
       let res = await getAllPokemon(counter);
-      setPokemonData(res.data.pokemons.results)
-      setLoading(false)
-    })()
+      setPokemonData(res.data.pokemons.results);
+      setLoading(false);
+    })();
   }, [counter]);
 
   const handleClick = () => {
@@ -26,14 +25,14 @@ export default function PokemonList() {
       {loading ? (
         <h1>Loading..</h1>
       ) : (
-        <div className="home">
-          <h2 className="home__title">Pokemon List</h2>
-          <div className="home__section">
+        <div className='home'>
+          <h2 className='home__title'>Pokemon List</h2>
+          <div className='home__section'>
             {pokemonData.map((pokemon, key) => {
               return <CustomCard key={key} pokemon={pokemon} />;
             })}
           </div>
-          <button className="home__button" onClick={handleClick}>
+          <button className='home__button' onClick={handleClick}>
             Load More
           </button>
         </div>

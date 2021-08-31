@@ -3,7 +3,7 @@ import { GET_ALL_POKEMONS } from '../global-gql/global-gql';
 export async function getAllPokemon(limit) {
   const gqlVariables = {
     limit: limit,
-    offset: 0
+    offset: 0,
   };
   let result = await fetch('https://graphql-pokeapi.graphcdn.app/', {
     credentials: 'omit',
@@ -13,8 +13,8 @@ export async function getAllPokemon(limit) {
       variables: gqlVariables,
     }),
     method: 'POST',
-  })
+  });
   let pokeData = await result.json();
 
-  return pokeData
+  return pokeData;
 }

@@ -17,7 +17,7 @@ export const GET_ALL_POKEMONS = `
 `;
 
 export const GET_POKEMON = gql`
-query pokemon($name: String!) {
+  query pokemon($name: String!) {
     pokemon(name: $name) {
       id
       name

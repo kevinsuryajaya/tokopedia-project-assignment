@@ -16,10 +16,14 @@ export default function PokemonDetail(props) {
     name: props.match.params.id,
   };
 
-  const { loading, error, data: pokemonData} = useQuery(GET_POKEMON, {
+  const {
+    loading,
+    error,
+    data: pokemonData,
+  } = useQuery(GET_POKEMON, {
     variables: gqlVariables,
   });
- 
+
   const catchClick = () => {
     const min = 1;
     const max = 3;
@@ -59,11 +63,11 @@ export default function PokemonDetail(props) {
         <div className='detail'>
           <div className='detail__header'>
             <h2 className='detail__headerTitle'>Pokemon Detail</h2>
-            <span>
-              The information about pokemon type, ability, and move
-            </span>
+            <span>The information about pokemon type, ability, and move</span>
           </div>
-          {error ? (<p>{error.message}</p>) : (
+          {error ? (
+            <p>{error.message}</p>
+          ) : (
             <>
               <div className='detail__body'>
                 <div className='detail__contentSection detail__contentSection--margin'>
@@ -72,11 +76,15 @@ export default function PokemonDetail(props) {
                       className='detail__image'
                       src={pokemonData.pokemon.sprites.front_default}
                       alt='pokemon'
-                      data-testid="pokemonImage"
+                      data-testid='pokemonImage'
                     />
                   </div>
                   <div>
-                      <button className='detail__button' onClick={catchClick} data-testid="catchButton">
+                    <button
+                      className='detail__button'
+                      onClick={catchClick}
+                      data-testid='catchButton'
+                    >
                       Catch With Your Poke Ball!
                     </button>
                   </div>
@@ -97,7 +105,7 @@ export default function PokemonDetail(props) {
                           value={key}
                           onChange={handleChange}
                           required
-                          data-testid="nicknameInput"
+                          data-testid='nicknameInput'
                         />
                       </div>
                       {check ? (
@@ -106,7 +114,9 @@ export default function PokemonDetail(props) {
                         ''
                       )}
                       <div className='modal__footer'>
-                        <button type='submit' className='modal__button'>Save</button>
+                        <button type='submit' className='modal__button'>
+                          Save
+                        </button>
                       </div>
                     </div>
                   </form>
@@ -114,13 +124,18 @@ export default function PokemonDetail(props) {
                 <div className='detail__contentSection'>
                   <div className='detail__content'>
                     <h4 className='detail__contentTitle'>Name</h4>
-                    <span className='detail__name'>{pokemonData.pokemon.name}</span>
+                    <span className='detail__name'>
+                      {pokemonData.pokemon.name}
+                    </span>
                   </div>
                   <div className='detail__content'>
                     <h4 className='detail__contentTitle'>Type</h4>{' '}
                     {pokemonData.pokemon.types.map((type, key) => {
                       return (
-                        <span className='detail__desc detail__desc--type' key={key}>
+                        <span
+                          className='detail__desc detail__desc--type'
+                          key={key}
+                        >
                           {type.type.name}
                         </span>
                       );
@@ -148,7 +163,10 @@ export default function PokemonDetail(props) {
                 <div className='detail__row'>
                   {pokemonData.pokemon.moves.map((move, key) => {
                     return (
-                      <span className='detail__desc detail__desc--move' key={key}>
+                      <span
+                        className='detail__desc detail__desc--move'
+                        key={key}
+                      >
                         {move.move.name}
                       </span>
                     );
