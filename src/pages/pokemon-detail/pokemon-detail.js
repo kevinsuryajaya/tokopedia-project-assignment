@@ -72,10 +72,11 @@ export default function PokemonDetail(props) {
                       className='detail__image'
                       src={pokemonData.pokemon.sprites.front_default}
                       alt='pokemon'
+                      data-testid="pokemonImage"
                     />
                   </div>
                   <div>
-                    <button className='detail__button' onClick={catchClick}>
+                      <button className='detail__button' onClick={catchClick} data-testid="catchButton">
                       Catch With Your Poke Ball!
                     </button>
                   </div>
@@ -96,6 +97,7 @@ export default function PokemonDetail(props) {
                           value={key}
                           onChange={handleChange}
                           required
+                          data-testid="nicknameInput"
                         />
                       </div>
                       {check ? (
