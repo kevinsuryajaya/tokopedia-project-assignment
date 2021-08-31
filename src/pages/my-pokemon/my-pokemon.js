@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+
 import { allStorage } from '../../services/pokemon-localStorage/pokemon-localStorage';
 import test from '../../assets/images/profile.jpg';
 import '../../css/my-pokemon.css';
@@ -46,10 +47,12 @@ export default function MyPokemon() {
                     className='user__pokemonImage'
                     src={myPokemon.image_url}
                     alt='pokemon'
+                    data-testid="pokemonImage"
                   />
                   <p className='user__pokemonNick'>{myPokemon.nickname}</p>
                   <button
                     className='user__button'
+                    data-testid="removeButton"
                     onClick={() => {
                       localStorage.removeItem(myPokemon.nickname);
                     }}
