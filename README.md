@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Implement GraphQL using fetch API in Pokemon List(Home) Page
 - (Noted) If you want to use REST-API you can use API from https://pokeapi.co/
 - Implement Unit Test in Pokemon Detail Page and My Pokemon(Profile) Page 
-- Deployed using heroku, you can check the web app on this link: 
+- Deployed using heroku, you can check the web app on this link: https://tokopedia-project-assignment.herokuapp.com/
 
 # References Code and Knowledge to Build This Web App
 - https://reactjs.org/docs/hooks-intro.html
