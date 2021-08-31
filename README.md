@@ -2,9 +2,36 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Documentation
+- Build an React web app to play Pokemon Games with React Hooks.
+- UI/UX design Mobile-First, so recommend to access with mobile device.
+- It's a single page application.
+- This web app have 3 pages, Pokemon List(Home) Page, Pokemon Detail Page, My Pokemon(Profile) Page.
+- This project using GraphQL from https://github.com/mazipan/graphql-pokeapi or you can check https://graphql-pokeapi.vercel.app/
+- Implement GraphQL using Apollo Client in Pokemon Detail Page
+- Implement GraphQL using fetch API in Pokemon List(Home) Page
+- (Noted) If you want to use REST-API you can use API from https://pokeapi.co/
+- Implement Unit Test in Pokemon Detail Page and My Pokemon(Profile) Page 
+- Deployed using heroku, you can check the web app on this link: 
+
+# References Code and Knowledge to Build This Web App
+- https://reactjs.org/docs/hooks-intro.html
+- https://github.com/mazipan/graphql-pokeapi
+- https://graphql-pokeapi.vercel.app/
+- https://www.tokopedia.com/ (mobile and dekstop version)
+- https://id.portal-pokemon.com/play/pokedex
+- https://www.w3schools.com/
+- https://emotion.sh/
+- https://jestjs.io/
+- https://testing-library.com/
+- https://www.heroku.com/
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+First install before run the app
 
 ### `npm start`
 
